@@ -16,24 +16,82 @@ namespace OnlineStorePlatform.Controllers
 		public IHttpActionResult login(string identifier, string password)
 		{
 			User user = Models.User.login(identifier, password);
+			if (user == null)
+			{
+				return Ok("Login Failed!");
+			}
 			return Ok(content: user);
 		}
 
-		public IHttpActionResult registerNormal()
+		[Route("registerNormal/")]
+		[HttpPost]
+		public IHttpActionResult registerNormal(User user)
         {
-            return null;
+			User toRegister = new NormalUser(user);
+			bool status = ((NormalUser)toRegister).register(null);
+            return Ok(status);
         }
-        public IHttpActionResult registerStoreOwner()
+
+		[Route("registerStoreOwner/")]
+		[HttpPost]
+		public IHttpActionResult registerStoreOwner(User user)
         {
-            return null;
-        }
-        public IHttpActionResult showAllUsers()
+			User toRegister = new StoreOwner(user);
+			bool status = ((StoreOwner)toRegister).register(null);
+			return Ok(status);
+		}
+
+		[Route("showall/")]
+		[HttpPost]
+		public IHttpActionResult showAll(string identifier, string password)
         {
-            return null;
+
+			User loggedin = Models.User.login(identifier, password);
+			if (loggedin == null)
+			{
+				return Ok("Error! Login Failed!");
+			}
+			if (loggedin.GetType().Name == "Adminstrator")
+			{
+				return Ok(((Adminstrator)loggedin).showAllUsers());
+			}
+			else
+			{
+				return Ok("Error! No admin is detected!");
+			}
         }
-        public IHttpActionResult addAdmin(User user)
+
+		/*
+		[Route("showallUsers/")]
+		[HttpGet]
+		public IHttpActionResult showAllUsers()
+		{
+			return Ok("ALL");
+			//return Ok(User.showAllUsers());
+		}
+		*/
+
+		[Route("addadmin/")]
+		[HttpPost]
+		public IHttpActionResult addAdmin(string identifier, string password, User user)
         {
-            return null;
-        }
+			User loggedin = Models.User.login(identifier, password);
+			if (loggedin == null)
+			{
+				return Ok("Error! Login Failed!");
+			}
+			if (loggedin.GetType().Name == "Adminstrator")
+			{
+				bool status = ((Adminstrator)loggedin).addAdminstrator(user);
+				if (status)
+					return Ok("Adminstrator created successfully!");
+				else
+					return Ok("Error creating admin!");
+			}
+			else
+			{
+				return Ok("Error! No admin is detected!");
+			}
+		}
     }
 }
