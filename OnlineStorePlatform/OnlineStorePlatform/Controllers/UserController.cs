@@ -11,11 +11,15 @@ namespace OnlineStorePlatform.Controllers
 {
 	public class UserController : ApiController
 	{
-		public IHttpActionResult login (string identifier, string password)
-        {
-            return null;
-        }
-        public IHttpActionResult registerNormal()
+		[Route("login/")]
+		[HttpPost]
+		public IHttpActionResult login(string identifier, string password)
+		{
+			User user = Models.User.login(identifier, password);
+			return Ok(content: user);
+		}
+
+		public IHttpActionResult registerNormal()
         {
             return null;
         }
