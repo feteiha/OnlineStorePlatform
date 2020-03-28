@@ -42,15 +42,18 @@ namespace OnlineStorePlatform.Controllers
         }
         public bool addUser(User user)
         {
-            /*OnlineStoreDBDataContext db = new OnlineStoreDBDataContext();
+            OnlineStoreDBDataContext db = new OnlineStoreDBDataContext();
             DB_User u = new DB_User();
-
-            u.DB_Username = user.;
-            u.DB_Password = user;
-            u.DB_Email = user.FName;
-            u.DB_Age = user.SName;*/
-            return false;
-            
+            u.DB_Username = user.username;
+            u.DB_Password = user.password;
+            u.DB_Email = user.email;
+            u.DB_Age = user.age;
+            if (user.GetType().Name == "Adminstrator") u.DB_Type = 0;
+            if (user.GetType().Name == "StoreOwner") u.DB_Type = 1;
+            if (user.GetType().Name == "NormalUser") u.DB_Type = 2;
+            db.DB_Users.InsertOnSubmit(u);
+            db.SubmitChanges();
+            return true;
         }
     }
 }
