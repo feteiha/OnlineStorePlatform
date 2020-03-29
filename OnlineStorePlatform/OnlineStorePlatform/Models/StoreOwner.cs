@@ -12,6 +12,12 @@ namespace OnlineStorePlatform.Models
         public StoreOwner(DB_User u) : base(u)
         {
         }
+
+		public StoreOwner(User u) : base(u)
+		{
+		}
+
+
         public bool register()
         {
             bool canAdd = true;

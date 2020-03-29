@@ -12,6 +12,9 @@ namespace OnlineStorePlatform.Models
         public NormalUser(DB_User u) : base(u)
         {
         }
+		public NormalUser(User u) : base(u)
+		{
+		}
         public bool register()
         {
             bool canAdd = true; 

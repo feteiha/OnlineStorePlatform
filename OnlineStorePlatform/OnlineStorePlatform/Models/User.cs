@@ -30,12 +30,21 @@ namespace OnlineStorePlatform.Models
             this.password = u.DB_Password;
             this.age = (int) u.DB_Age;
         }
-        
-        public static User login(string identifier, string password)
+
+		public User(User u)
+		{
+			this.id = u.id;
+			this.username = u.username;
+			this.email = u.email;
+			this.password = u.password;
+			this.age = (int)u.age;
+		}
+
+		public static User login(string identifier, string password)
         {
             DatabaseController DBController = new DatabaseController();
             User user = DBController.getUser(identifier);
-            
+
             if (user != null)
             {
                 if (user.password == password)
