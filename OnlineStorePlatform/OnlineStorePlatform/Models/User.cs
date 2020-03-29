@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineStorePlatform.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,16 +8,16 @@ namespace OnlineStorePlatform.Models
 {
 	public abstract class User
 	{
-        private int id { get; set; }
-        private string username { get; set; }
+        public int id { get; set; }
+        public string username { get; set; }
 
-        private string email { get; set; }
+        public string email { get; set; }
 
-        private string password { get; set; }
+        public string password { get; set; }
 
-        private string gender { get; set; }
+        public string gender { get; set; }
 
-        private int age{ get; set; }
+        public int age{ get; set; }
         public User ()
         {
 
@@ -41,6 +42,20 @@ namespace OnlineStorePlatform.Models
 
 		public static User login(string identifier, string password)
         {
+            DatabaseController DBController = new DatabaseController();
+            User user = DBController.getUser(identifier);
+
+            if (user != null)
+            {
+                if (user.password == password)
+                {
+                    return user;
+                }
+                else
+                {
+                    return null;
+                }
+            }
             return null;
         }
     }

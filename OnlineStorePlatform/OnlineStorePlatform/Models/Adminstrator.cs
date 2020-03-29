@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using OnlineStorePlatform.Controllers;
 using System.Linq;
 using System.Web;
 
@@ -12,7 +13,8 @@ namespace OnlineStorePlatform.Models
         }
         public List<User> showAllUsers()
         {
-            return null;
+            DatabaseController DBController = new DatabaseController();
+            return DBController.getAllUsers();
         }
         public bool addAdminstrator(User newUser)
         {
