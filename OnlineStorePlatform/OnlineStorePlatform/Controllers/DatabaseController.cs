@@ -37,9 +37,9 @@ namespace OnlineStorePlatform.Controllers
                 return null;
             for (int i = 0; i < DB_users.Count; i++)
             {
-                if (DB_users[i].DB_Type == 1) users.Add(new Adminstrator(DB_users[i]));
-                if (DB_users[i].DB_Type == 2) users.Add(new NormalUser(DB_users[i]));
-                if (DB_users[i].DB_Type == 3) users.Add(new StoreOwner(DB_users[i]));
+                if (DB_users[i].DB_Type == 0) users.Add(new Adminstrator(DB_users[i]));
+                if (DB_users[i].DB_Type == 1) users.Add(new NormalUser(DB_users[i]));
+                if (DB_users[i].DB_Type == 2) users.Add(new StoreOwner(DB_users[i]));
             }
             return users;
         }
