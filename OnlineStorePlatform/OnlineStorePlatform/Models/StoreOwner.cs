@@ -12,12 +12,10 @@ namespace OnlineStorePlatform.Models
         public StoreOwner(DB_User u) : base(u)
         {
         }
-
+        public StoreOwner() { }
 		public StoreOwner(User u) : base(u)
 		{
 		}
-
-
         public bool register()
         {
             bool canAdd = true;
@@ -37,8 +35,6 @@ namespace OnlineStorePlatform.Models
             {
                 dataBase.addUser(this);
             }
-
-
             return true;
         }
     }

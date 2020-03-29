@@ -8,6 +8,7 @@ namespace OnlineStorePlatform.Models
 {
     public class Adminstrator: User
     {
+        public Adminstrator() { }
         public Adminstrator(DB_User u) : base(u)
         {
         }

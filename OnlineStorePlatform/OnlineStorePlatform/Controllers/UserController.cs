@@ -25,7 +25,7 @@ namespace OnlineStorePlatform.Controllers
 
 		[Route("registerNormal/")]
 		[HttpPost]
-		public IHttpActionResult registerNormal(User user)
+		public IHttpActionResult registerNormal(NormalUser user)
         {
 			User toRegister = new NormalUser(user);
 			bool status = ((NormalUser)toRegister).register();
@@ -45,8 +45,7 @@ namespace OnlineStorePlatform.Controllers
 		[HttpPost]
 		public IHttpActionResult showAll(string identifier, string password)
         {
-
-			User loggedin = Models.User.login(identifier, password);
+            User loggedin = Models.User.login(identifier, password);
 			if (loggedin == null)
 			{
 				return Ok("Error! Login Failed!");
@@ -73,7 +72,7 @@ namespace OnlineStorePlatform.Controllers
 
 		[Route("addadmin/")]
 		[HttpPost]
-		public IHttpActionResult addAdmin(string identifier, string password, User user)
+		public IHttpActionResult addAdmin(string identifier, string password, Adminstrator user)
         {
 			User loggedin = Models.User.login(identifier, password);
 			if (loggedin == null)

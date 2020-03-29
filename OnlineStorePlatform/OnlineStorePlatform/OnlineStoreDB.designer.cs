@@ -30,6 +30,9 @@ namespace OnlineStorePlatform
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertDB_User(DB_User instance);
+    partial void UpdateDB_User(DB_User instance);
+    partial void DeleteDB_User(DB_User instance);
     #endregion
 		
 		public OnlineStoreDBDataContext() : 
@@ -72,10 +75,14 @@ namespace OnlineStorePlatform
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DB_User")]
-	public partial class DB_User
+	public partial class DB_User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
 		private int _BD_Id;
+		
+		private string _DB_Fullname;
 		
 		private string _DB_Username;
 		
@@ -85,13 +92,38 @@ namespace OnlineStorePlatform
 		
 		private int _DB_Type;
 		
-		private System.Nullable<int> _DB_Age;
+		private int _DB_Age;
+		
+		private string _DB_Gender;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBD_IdChanging(int value);
+    partial void OnBD_IdChanged();
+    partial void OnDB_FullnameChanging(string value);
+    partial void OnDB_FullnameChanged();
+    partial void OnDB_UsernameChanging(string value);
+    partial void OnDB_UsernameChanged();
+    partial void OnDB_EmailChanging(string value);
+    partial void OnDB_EmailChanged();
+    partial void OnDB_PasswordChanging(string value);
+    partial void OnDB_PasswordChanged();
+    partial void OnDB_TypeChanging(int value);
+    partial void OnDB_TypeChanged();
+    partial void OnDB_AgeChanging(int value);
+    partial void OnDB_AgeChanged();
+    partial void OnDB_GenderChanging(string value);
+    partial void OnDB_GenderChanged();
+    #endregion
 		
 		public DB_User()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BD_Id", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BD_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int BD_Id
 		{
 			get
@@ -102,7 +134,31 @@ namespace OnlineStorePlatform
 			{
 				if ((this._BD_Id != value))
 				{
+					this.OnBD_IdChanging(value);
+					this.SendPropertyChanging();
 					this._BD_Id = value;
+					this.SendPropertyChanged("BD_Id");
+					this.OnBD_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DB_Fullname", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string DB_Fullname
+		{
+			get
+			{
+				return this._DB_Fullname;
+			}
+			set
+			{
+				if ((this._DB_Fullname != value))
+				{
+					this.OnDB_FullnameChanging(value);
+					this.SendPropertyChanging();
+					this._DB_Fullname = value;
+					this.SendPropertyChanged("DB_Fullname");
+					this.OnDB_FullnameChanged();
 				}
 			}
 		}
@@ -118,7 +174,11 @@ namespace OnlineStorePlatform
 			{
 				if ((this._DB_Username != value))
 				{
+					this.OnDB_UsernameChanging(value);
+					this.SendPropertyChanging();
 					this._DB_Username = value;
+					this.SendPropertyChanged("DB_Username");
+					this.OnDB_UsernameChanged();
 				}
 			}
 		}
@@ -134,7 +194,11 @@ namespace OnlineStorePlatform
 			{
 				if ((this._DB_Email != value))
 				{
+					this.OnDB_EmailChanging(value);
+					this.SendPropertyChanging();
 					this._DB_Email = value;
+					this.SendPropertyChanged("DB_Email");
+					this.OnDB_EmailChanged();
 				}
 			}
 		}
@@ -150,7 +214,11 @@ namespace OnlineStorePlatform
 			{
 				if ((this._DB_Password != value))
 				{
+					this.OnDB_PasswordChanging(value);
+					this.SendPropertyChanging();
 					this._DB_Password = value;
+					this.SendPropertyChanged("DB_Password");
+					this.OnDB_PasswordChanged();
 				}
 			}
 		}
@@ -166,13 +234,17 @@ namespace OnlineStorePlatform
 			{
 				if ((this._DB_Type != value))
 				{
+					this.OnDB_TypeChanging(value);
+					this.SendPropertyChanging();
 					this._DB_Type = value;
+					this.SendPropertyChanged("DB_Type");
+					this.OnDB_TypeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DB_Age", DbType="Int")]
-		public System.Nullable<int> DB_Age
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DB_Age", DbType="Int NOT NULL")]
+		public int DB_Age
 		{
 			get
 			{
@@ -182,8 +254,52 @@ namespace OnlineStorePlatform
 			{
 				if ((this._DB_Age != value))
 				{
+					this.OnDB_AgeChanging(value);
+					this.SendPropertyChanging();
 					this._DB_Age = value;
+					this.SendPropertyChanged("DB_Age");
+					this.OnDB_AgeChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DB_Gender", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string DB_Gender
+		{
+			get
+			{
+				return this._DB_Gender;
+			}
+			set
+			{
+				if ((this._DB_Gender != value))
+				{
+					this.OnDB_GenderChanging(value);
+					this.SendPropertyChanging();
+					this._DB_Gender = value;
+					this.SendPropertyChanged("DB_Gender");
+					this.OnDB_GenderChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

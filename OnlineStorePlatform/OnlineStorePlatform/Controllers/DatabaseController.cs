@@ -20,7 +20,8 @@ namespace OnlineStorePlatform.Controllers
                             select (u)
                         ).FirstOrDefault();
             User user = null;
-
+            if (DBuser == null)
+                return null;
             if      (DBuser.DB_Type == 0) user = new Adminstrator(DBuser);
             else if (DBuser.DB_Type == 1) user = new NormalUser(DBuser);
             else if (DBuser.DB_Type == 2) user = new StoreOwner(DBuser);
@@ -32,11 +33,13 @@ namespace OnlineStorePlatform.Controllers
             List<DB_User> DB_users = (from u in db.DB_Users
                                        select u).ToList<DB_User>();
             List<User> users = new List<User>();
+            if (DB_users.Count == 0)
+                return null;
             for (int i = 0; i < DB_users.Count; i++)
             {
-                if (DB_users[i].BD_Id == 1) users.Add(new Adminstrator(DB_users[i]));
-                if (DB_users[i].BD_Id == 2) users.Add(new NormalUser(DB_users[i]));
-                if (DB_users[i].BD_Id == 3) users.Add(new StoreOwner(DB_users[i]));
+                if (DB_users[i].DB_Type == 1) users.Add(new Adminstrator(DB_users[i]));
+                if (DB_users[i].DB_Type == 2) users.Add(new NormalUser(DB_users[i]));
+                if (DB_users[i].DB_Type == 3) users.Add(new StoreOwner(DB_users[i]));
             }
             return users;
         }
@@ -44,10 +47,12 @@ namespace OnlineStorePlatform.Controllers
         {
             OnlineStoreDBDataContext db = new OnlineStoreDBDataContext();
             DB_User u = new DB_User();
+            u.DB_Fullname = user.fullname;
             u.DB_Username = user.username;
             u.DB_Password = user.password;
-            u.DB_Email = user.email;
-            u.DB_Age = user.age;
+            u.DB_Email    = user.email;
+            u.DB_Gender   = user.gender;
+            u.DB_Age      = user.age;
             if (user.GetType().Name == "Adminstrator") u.DB_Type = 0;
             if (user.GetType().Name == "StoreOwner") u.DB_Type = 1;
             if (user.GetType().Name == "NormalUser") u.DB_Type = 2;

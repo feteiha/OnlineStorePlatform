@@ -8,38 +8,39 @@ using System.Web;
 namespace OnlineStorePlatform.Models
 {
     [KnownType(typeof(NormalUser))]
+    [KnownType(typeof(StoreOwner))]
+    [KnownType(typeof(Adminstrator))]
     public abstract class User
-	{
-        public int id { get; set; }
-        public string username { get; set; }
+    {
+        public string fullname  { get; set; }
+        public string username  { get; set; }
+        public string email     { get; set; }
+        public string password  { get; set; }
+        public string gender    { get; set; }
+        public int    age       { get; set; }
 
-        public string email { get; set; }
-
-        public string password { get; set; }
-
-        public string gender { get; set; }
-
-        public int age{ get; set; }
         public User ()
         {
 
         }
         public User(DB_User u)
         {
-            this.id = u.BD_Id;
+            this.fullname = u.DB_Fullname;
             this.username = u.DB_Username;
             this.email = u.DB_Email;
             this.password = u.DB_Password;
+            this.gender = u.DB_Gender;
             this.age = (int) u.DB_Age;
         }
 
 		public User(User u)
-		{
-			this.id = u.id;
-			this.username = u.username;
+        {
+            this.fullname = u.fullname;
+            this.username = u.username;
 			this.email = u.email;
 			this.password = u.password;
-			this.age = (int)u.age;
+            this.gender = u.gender;
+            this.age = (int)u.age;
 		}
 
 		public static User login(string identifier, string password)

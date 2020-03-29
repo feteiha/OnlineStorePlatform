@@ -9,6 +9,7 @@ namespace OnlineStorePlatform.Models
 {
     public class NormalUser : User, StandardUserInterface
     {
+        public string test { get; set; }
         public NormalUser() { }
         public NormalUser(DB_User u) : base(u)
         {
@@ -35,8 +36,6 @@ namespace OnlineStorePlatform.Models
             {
                 dataBase.addUser(this);
             }
-
-
             return true;
         }
     }
