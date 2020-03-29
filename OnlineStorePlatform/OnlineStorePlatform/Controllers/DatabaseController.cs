@@ -20,23 +20,40 @@ namespace OnlineStorePlatform.Controllers
                             select (u)
                         ).FirstOrDefault();
             User user = null;
-            if (DBuser.DB_Type == 0)
-                user = new Adminstrator(DBuser);
 
-            else if (DBuser.DB_Type == 1)
-                user = new NormalUser(DBuser);
-
-            else if (DBuser.DB_Type == 2)
-                user = new StoreOwner(DBuser);
+            if      (DBuser.DB_Type == 0) user = new Adminstrator(DBuser);
+            else if (DBuser.DB_Type == 1) user = new NormalUser(DBuser);
+            else if (DBuser.DB_Type == 2) user = new StoreOwner(DBuser);
             return user;
         }
         public List<User> getAllUsers()
         {
-            return null;
+            OnlineStoreDBDataContext db = new OnlineStoreDBDataContext();
+            List<DB_User> DB_users = (from u in db.DB_Users
+                                       select u).ToList<DB_User>();
+            List<User> users = new List<User>();
+            for (int i = 0; i < DB_users.Count; i++)
+            {
+                if (DB_users[i].BD_Id == 1) users.Add(new Adminstrator(DB_users[i]));
+                if (DB_users[i].BD_Id == 2) users.Add(new NormalUser(DB_users[i]));
+                if (DB_users[i].BD_Id == 3) users.Add(new StoreOwner(DB_users[i]));
+            }
+            return users;
         }
         public bool addUser(User user)
         {
-            return false ;
+            OnlineStoreDBDataContext db = new OnlineStoreDBDataContext();
+            DB_User u = new DB_User();
+            u.DB_Username = user.username;
+            u.DB_Password = user.password;
+            u.DB_Email = user.email;
+            u.DB_Age = user.age;
+            if (user.GetType().Name == "Adminstrator") u.DB_Type = 0;
+            if (user.GetType().Name == "StoreOwner") u.DB_Type = 1;
+            if (user.GetType().Name == "NormalUser") u.DB_Type = 2;
+            db.DB_Users.InsertOnSubmit(u);
+            db.SubmitChanges();
+            return true;
         }
     }
 }
