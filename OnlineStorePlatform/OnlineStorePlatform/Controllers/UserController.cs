@@ -11,7 +11,7 @@ namespace OnlineStorePlatform.Controllers
 {
 	public class UserController : ApiController
 	{
-		[Route("login/")]
+        [Route("login/")]
 		[HttpPost]
 		public IHttpActionResult login(string identifier, string password)
 		{
@@ -28,7 +28,7 @@ namespace OnlineStorePlatform.Controllers
 		public IHttpActionResult registerNormal(User user)
         {
 			User toRegister = new NormalUser(user);
-			bool status = ((NormalUser)toRegister).register(null);
+			bool status = ((NormalUser)toRegister).register();
             return Ok(status);
         }
 
@@ -37,7 +37,7 @@ namespace OnlineStorePlatform.Controllers
 		public IHttpActionResult registerStoreOwner(User user)
         {
 			User toRegister = new StoreOwner(user);
-			bool status = ((StoreOwner)toRegister).register(null);
+			bool status = ((StoreOwner)toRegister).register();
 			return Ok(status);
 		}
 

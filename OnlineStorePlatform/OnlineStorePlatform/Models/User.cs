@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace OnlineStorePlatform.Models
 {
-	public abstract class User
+    [KnownType(typeof(NormalUser))]
+    public abstract class User
 	{
         public int id { get; set; }
         public string username { get; set; }

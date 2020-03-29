@@ -8,6 +8,6 @@ namespace OnlineStorePlatform.Models
 {
     interface StandardUserInterface
     {
-        bool register(User user);
+        bool register();
     }
 }

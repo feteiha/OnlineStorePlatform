@@ -9,6 +9,7 @@ namespace OnlineStorePlatform.Models
 {
     public class NormalUser : User, StandardUserInterface
     {
+        public NormalUser() { }
         public NormalUser(DB_User u) : base(u)
         {
         }
