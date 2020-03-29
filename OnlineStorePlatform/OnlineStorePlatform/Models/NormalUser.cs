@@ -9,7 +9,6 @@ namespace OnlineStorePlatform.Models
 {
     public class NormalUser : User, StandardUserInterface
     {
-        public string test { get; set; }
         public NormalUser() { }
         public NormalUser(DB_User u) : base(u)
         {
@@ -23,6 +22,7 @@ namespace OnlineStorePlatform.Models
             List<User> allUsers;
             DatabaseController dataBase = new DatabaseController() ;
             allUsers = dataBase.getAllUsers();
+
             for (int i = 0; i < allUsers.Count; i++)
             {
                 if (this.username == allUsers[i].username)
