@@ -66,8 +66,6 @@ namespace Tests
 			var contentResult6 = result6 as OkNegotiatedContentResult<string>;
 			Assert.AreEqual(contentResult6.Content.ToString(), "Login Failed!");
 		}
-
-	}
         [TestMethod] // valid test case
         public void Testshowall_1()
         {
