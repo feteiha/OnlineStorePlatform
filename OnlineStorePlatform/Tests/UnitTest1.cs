@@ -11,16 +11,16 @@ namespace Tests
 	public class UnitTest1
 	{
 		[TestMethod]
-		public void Testlogin1()
+		public void Testlogin1() //Correct credetentials
 		{
 			OnlineStorePlatform.Controllers.UserController test1 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result = test1.login("Hussien", "12345678");
+			IHttpActionResult result = test1.login("Hussien", "12345678"); 
 			var contentResult = result as OkNegotiatedContentResult<User>;
 			Assert.AreEqual(contentResult.Content.username.ToString(), "Hussien");
 			Assert.AreEqual(contentResult.Content.password.ToString(), "12345678");
 		}
 		[TestMethod]
-		public void Testlogin2()
+		public void Testlogin2() //Wrong password
 		{
 			OnlineStorePlatform.Controllers.UserController test2 = new OnlineStorePlatform.Controllers.UserController();
 			IHttpActionResult result2 = test2.login("Hussien", "123456789");
@@ -28,7 +28,7 @@ namespace Tests
 			Assert.AreEqual(contentResult2.Content.ToString(), "Login Failed!");
 		}
 		[TestMethod]
-		public void Testlogin3()
+		public void Testlogin3() //Wrong Username
 		{
 			OnlineStorePlatform.Controllers.UserController test3 = new OnlineStorePlatform.Controllers.UserController();
 			IHttpActionResult result3 = test3.login("WrongUserName", "anypassword");
