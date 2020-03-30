@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,7 +14,7 @@ namespace Tests
 		public void Testlogin1() //Correct credetentials
 		{
 			OnlineStorePlatform.Controllers.UserController test1 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result = test1.login("Hussien", "12345678"); 
+			IHttpActionResult result = test1.login("Hussien", "12345678");
 			var contentResult = result as OkNegotiatedContentResult<User>;
 			Assert.AreEqual(contentResult.Content.username.ToString(), "Hussien");
 			Assert.AreEqual(contentResult.Content.password.ToString(), "12345678");
@@ -33,7 +34,7 @@ namespace Tests
 			IHttpActionResult result3 = test3.login("WrongUserName", "anypassword");
 			var contentResult3 = result3 as OkNegotiatedContentResult<string>;
 			Assert.AreEqual(contentResult3.Content.ToString(), "Login Failed!");
-			
+
 		}
 		[TestMethod]
 		public void Testlogin4() //Ignore Case in Username
@@ -67,4 +68,30 @@ namespace Tests
 		}
 
 	}
+        [TestMethod] // valid test case
+        public void Testshowall_1()
+        {
+            OnlineStorePlatform.Controllers.UserController test = new OnlineStorePlatform.Controllers.UserController();
+            IHttpActionResult result = test.showAll("khaled", "12345678");
+            var contentResult = result as OkNegotiatedContentResult<List<User>>;
+            Assert.AreNotEqual(contentResult.Content.Count, 0);
+        }
+
+        [TestMethod] // Not valid (wrong password)
+        public void Testshowall_2()
+        {
+            OnlineStorePlatform.Controllers.UserController test = new OnlineStorePlatform.Controllers.UserController();
+            IHttpActionResult result = test.showAll("khaled", "123");
+            var contentResult = result as OkNegotiatedContentResult<string>;
+            Assert.AreEqual(contentResult.Content.ToString(), "Error! Login Failed!");
+        }
+        [TestMethod] // Not valid (normalUser)
+        public void Testshowall_3()
+        {
+            OnlineStorePlatform.Controllers.UserController test = new OnlineStorePlatform.Controllers.UserController();
+            IHttpActionResult result = test.showAll("normal", "12345678");
+            var contentResult = result as OkNegotiatedContentResult<string>;
+            Assert.AreEqual(contentResult.Content.ToString(), "Error! No admin is detected!");
+        }
+    }
 }
