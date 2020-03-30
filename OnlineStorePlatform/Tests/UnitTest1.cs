@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -35,5 +36,30 @@ namespace Tests
 			Assert.AreEqual(contentResult3.Content.ToString(), "Login Failed!");
 			
 		}
-	}
+        [TestMethod] // valid test case
+        public void Testshowall_1()
+        {
+            OnlineStorePlatform.Controllers.UserController test = new OnlineStorePlatform.Controllers.UserController();
+            IHttpActionResult result = test.showAll("khaled", "12345678");
+            var contentResult = result as OkNegotiatedContentResult<List<User>>;
+            Assert.AreNotEqual(contentResult.Content.Count, 0);
+        }
+
+        [TestMethod] // Not valid (wrong password)
+        public void Testshowall_2()
+        {
+            OnlineStorePlatform.Controllers.UserController test = new OnlineStorePlatform.Controllers.UserController();
+            IHttpActionResult result = test.showAll("khaled", "123");
+            var contentResult = result as OkNegotiatedContentResult<string>;
+            Assert.AreEqual(contentResult.Content.ToString(), "Error! Login Failed!");
+        }
+        [TestMethod] // Not valid (normalUser)
+        public void Testshowall_3()
+        {
+            OnlineStorePlatform.Controllers.UserController test = new OnlineStorePlatform.Controllers.UserController();
+            IHttpActionResult result = test.showAll("normal", "12345678");
+            var contentResult = result as OkNegotiatedContentResult<string>;
+            Assert.AreEqual(contentResult.Content.ToString(), "Error! No admin is detected!");
+        }
+    }
 }
