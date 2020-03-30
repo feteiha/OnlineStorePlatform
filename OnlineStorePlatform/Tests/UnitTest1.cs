@@ -39,7 +39,7 @@ namespace Tests
 		public void Testlogin4() //Ignore Case in Username
 		{
 			OnlineStorePlatform.Controllers.UserController test4 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result4 = test4.login("Hussien", "12345678");
+			IHttpActionResult result4 = test4.login("HUSSIEN", "12345678");
 			var contentResult4 = result4 as OkNegotiatedContentResult<User>;
 
 			Assert.AreEqual(contentResult4.Content.username.ToString().ToLower(), "hussien");
