@@ -20,7 +20,7 @@ namespace OnlineStorePlatform.Controllers
 			{
 				return Ok("Login Failed!");
 			}
-			return Ok(content: user);
+			return Ok(user);
 		}
 
 		[Route("registerNormal/")]
