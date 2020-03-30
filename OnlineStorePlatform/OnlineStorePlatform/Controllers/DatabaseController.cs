@@ -37,9 +37,9 @@ namespace OnlineStorePlatform.Controllers
                 return null;
             for (int i = 0; i < DB_users.Count; i++)
             {
-                if (DB_users[i].DB_Type == 0) users.Add(new Adminstrator(DB_users[i]));
-                if (DB_users[i].DB_Type == 1) users.Add(new NormalUser(DB_users[i]));
-                if (DB_users[i].DB_Type == 2) users.Add(new StoreOwner(DB_users[i]));
+                if      (DB_users[i].DB_Type == 0) users.Add(new Adminstrator(DB_users[i]));
+                else if (DB_users[i].DB_Type == 1) users.Add(new NormalUser(DB_users[i]));
+                else if (DB_users[i].DB_Type == 2) users.Add(new StoreOwner(DB_users[i]));
             }
             return users;
         }
@@ -53,9 +53,9 @@ namespace OnlineStorePlatform.Controllers
             u.DB_Email    = user.email;
             u.DB_Gender   = user.gender;
             u.DB_Age      = user.age;
-            if (user.GetType().Name == "Adminstrator") u.DB_Type = 0;
-            if (user.GetType().Name == "StoreOwner") u.DB_Type = 1;
-            if (user.GetType().Name == "NormalUser") u.DB_Type = 2;
+            if      (user.GetType().Name == "Adminstrator") u.DB_Type = 0;
+            else if (user.GetType().Name == "StoreOwner"  ) u.DB_Type = 1;
+            else if (user.GetType().Name == "NormalUser"  ) u.DB_Type = 2;
             db.DB_Users.InsertOnSubmit(u);
             db.SubmitChanges();
             return true;

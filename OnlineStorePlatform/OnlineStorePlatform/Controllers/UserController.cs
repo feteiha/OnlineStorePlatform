@@ -20,24 +20,22 @@ namespace OnlineStorePlatform.Controllers
 			{
 				return Ok("Login Failed!");
 			}
-			return Ok(content: user);
+			return Ok(user);
 		}
 
 		[Route("registerNormal/")]
 		[HttpPost]
 		public IHttpActionResult registerNormal(NormalUser user)
         {
-			User toRegister = new NormalUser(user);
-			bool status = ((NormalUser)toRegister).register();
+			bool status = user.register();
             return Ok(status);
         }
 
 		[Route("registerStoreOwner/")]
 		[HttpPost]
-		public IHttpActionResult registerStoreOwner(User user)
+		public IHttpActionResult registerStoreOwner(StoreOwner user)
         {
-			User toRegister = new StoreOwner(user);
-			bool status = ((StoreOwner)toRegister).register();
+			bool status = user.register();
 			return Ok(status);
 		}
 
