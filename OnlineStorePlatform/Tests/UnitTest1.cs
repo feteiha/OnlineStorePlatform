@@ -13,27 +13,7 @@ namespace Tests
         private static string addAdminPassword = "addAdminTest_12345678";
 
 		[TestMethod]
-		/*
-		public void Testlogin()
-		{
-			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result = userController.login("hussien", "12345678");
-			var contentResult = result as OkNegotiatedContentResult<User>;
-
-
-		public void Testlogin1() //Correct credetentials
-		{
-			OnlineStorePlatform.Controllers.UserController test1 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result = test1.login("Hussien", "12345678");
-			var contentResult = result as OkNegotiatedContentResult<User>;
-
-			Assert.AreEqual(contentResult.Content.username.ToString(), "Hussien");
-			Assert.AreEqual(contentResult.Content.password.ToString(), "12345678");
-
-		}
-
-		*/
-/*		public void Test1registerNormal()
+		public void Test1registerNormal()
 		{
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
@@ -50,8 +30,9 @@ namespace Tests
 
 			Assert.AreEqual(contentResult3.Content, false);
 
-		}*/
-		/*public void Test2registerNormal()
+		}
+		[TestMethod]
+		public void Test2registerNormal()
 		{
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
@@ -67,8 +48,9 @@ namespace Tests
 			var contentResult = registerNormalResult as OkNegotiatedContentResult<bool>;
 
 			Assert.AreEqual(contentResult.Content, true);
-		}*/
-		/*public void Test3registerNormal()
+		}
+		[TestMethod]
+		public void Test3registerNormal()
 		{
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
@@ -84,8 +66,8 @@ namespace Tests
 			var contentResult2 = registerNormalResult2 as OkNegotiatedContentResult<bool>;
 
 			Assert.AreEqual(contentResult2.Content, false);
-		}*/
-		/*
+		}
+		[TestMethod]
 		public void Test4registerStoreOwner()
 		{
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
@@ -103,8 +85,7 @@ namespace Tests
 
 			Assert.AreEqual(contentResult2.Content, true);
 		}
-		*/
-		/*
+		[TestMethod]
 		public void Test5registerStoreOwner()
 		{
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
@@ -121,8 +102,8 @@ namespace Tests
 			var contentResult2 = registerStoreOwnerResult1 as OkNegotiatedContentResult<bool>;
 
 			Assert.AreEqual(contentResult2.Content, false);
-		}*/
-		/*
+		}
+		[TestMethod]
 		public void Test6registerStoreOwner()
 		{
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
@@ -140,7 +121,7 @@ namespace Tests
 
 			Assert.AreEqual(contentResult2.Content, false);
 		}
-		*/
+		[TestMethod]
 		public void Test7registerStoreOwner()
 		{
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
@@ -274,6 +255,18 @@ namespace Tests
             contentResult = result as OkNegotiatedContentResult<string>;
             Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
         }
+
+		[TestMethod]
+		public void Testlogin1() //Correct credetentials
+		{
+			OnlineStorePlatform.Controllers.UserController test1 = new OnlineStorePlatform.Controllers.UserController();
+			IHttpActionResult result = test1.login("Hussien", "12345678");
+			var contentResult = result as OkNegotiatedContentResult<User>;
+
+			Assert.AreEqual(contentResult.Content.username.ToString(), "Hussien");
+			Assert.AreEqual(contentResult.Content.password.ToString(), "12345678");
+
+		}
 
 		[TestMethod]
 		public void Testlogin2() //Wrong password
