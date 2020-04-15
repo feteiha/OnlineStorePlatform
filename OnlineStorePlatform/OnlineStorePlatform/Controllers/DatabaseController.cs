@@ -70,7 +70,7 @@ namespace OnlineStorePlatform.Controllers
                             select (u)
                         ).FirstOrDefault();
             if (DBuser == null)
-                return null;
+                return false;
             db.DB_Users.DeleteOnSubmit(DBuser);
             db.SubmitChanges();
             return true;
