@@ -13,5 +13,6 @@ namespace OnlineStorePlatform.Controllers
 		User getUser(String identifier);
 		List<User> getAllUsers();
 		bool addUser(User user);
+        bool deleteUser(User user);
     }
 }
