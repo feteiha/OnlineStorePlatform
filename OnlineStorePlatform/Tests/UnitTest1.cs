@@ -10,11 +10,31 @@ namespace Tests
 	[TestClass]
 	public class UnitTest1
 	{
-	/// <summary>
-	///Register Users Tests -----------------------------------------------------------------------------------------------------------------------
-	/// </summary>
-
+		/// <summary>
+		///Register Users Tests -----------------------------------------------------------------------------------------------------------------------
+		/// </summary>
 		[TestMethod]
+
+		public void TestregisterNormalWithSameEmail()
+		{
+			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
+
+			NormalUser u3 = new NormalUser();
+			u3.username = "HatemMamdoh";
+			u3.email = "anaaa@yahoo.com";
+			u3.password = "123456789";
+			u3.fullname = "Hatem";
+			u3.age = 18;
+			u3.gender = "male";
+
+			IHttpActionResult registerNormalResult3 = userController.registerNormal(u3);
+			var contentResult3 = registerNormalResult3 as OkNegotiatedContentResult<bool>;
+
+			Assert.AreEqual(contentResult3.Content, false);
+
+		}
+		[TestMethod]
+
 		public void Test1registerNormal()
 		{
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
