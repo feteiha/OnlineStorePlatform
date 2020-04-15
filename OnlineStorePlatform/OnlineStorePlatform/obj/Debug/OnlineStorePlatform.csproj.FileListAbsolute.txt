@@ -90,7 +90,6 @@ C:\Users\Khaled-Predator\Desktop\FCI\OnlineStorePlatform\OnlineStorePlatform\Onl
 C:\Users\Khaled-Predator\Desktop\FCI\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Khaled-Predator\Desktop\FCI\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.AI.Web.xml
 C:\Users\Khaled-Predator\Desktop\FCI\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Khaled-Predator\Desktop\FCI\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\obj\Debug\OnlineStorePlatform.csprojAssemblyReference.cache
 C:\Users\Khaled-Predator\Desktop\FCI\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\obj\Debug\OnlineStorePlatform.csproj.CoreCompileInputs.cache
 C:\Users\Khaled-Predator\Desktop\FCI\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\obj\Debug\OnlineStorePlatform.csproj.CopyComplete
 C:\Users\Khaled-Predator\Desktop\FCI\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\obj\Debug\OnlineStorePlatform.dll

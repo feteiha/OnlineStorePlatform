@@ -13,7 +13,7 @@ namespace OnlineStorePlatform.Controllers
 	{
         [Route("login/")]
 		[HttpPost]
-		public IHttpActionResult login(string identifier, string password)
+        public IHttpActionResult login(string identifier, string password)
 		{
 			User user = Models.User.login(identifier, password);
 			if (user == null)
@@ -25,7 +25,7 @@ namespace OnlineStorePlatform.Controllers
 
 		[Route("registerNormal/")]
 		[HttpPost]
-		public IHttpActionResult registerNormal(NormalUser user)
+        public IHttpActionResult registerNormal(NormalUser user)
         {
 			bool status = user.register();
             return Ok(status);
@@ -40,55 +40,20 @@ namespace OnlineStorePlatform.Controllers
 		}
 
 		[Route("showall/")]
-		[HttpPost]
-		public IHttpActionResult showAll(string identifier, string password)
-        {
-            User loggedin = Models.User.login(identifier, password);
-			if (loggedin == null)
-			{
-				return Ok("Error! Login Failed!");
-			}
-			if (loggedin.GetType().Name == "Adminstrator")
-			{
-				return Ok(((Adminstrator)loggedin).showAllUsers());
-			}
-			else
-			{
-				return Ok("Error! No admin is detected!");
-			}
-        }
-
-		/*
-		[Route("showallUsers/")]
 		[HttpGet]
-		public IHttpActionResult showAllUsers()
-		{
-			return Ok("ALL");
-			//return Ok(User.showAllUsers());
-		}
-		*/
-
+        public IHttpActionResult showAll()
+        {
+            return Ok(Adminstrator.showAllUsers());
+        }
 		[Route("addadmin/")]
 		[HttpPost]
-		public IHttpActionResult addAdmin(string identifier, string password, Adminstrator user)
+        public IHttpActionResult addAdmin(Adminstrator user)
         {
-			User loggedin = Models.User.login(identifier, password);
-			if (loggedin == null)
-			{
-				return Ok("Error! Login Failed!");
-			}
-			if (loggedin.GetType().Name == "Adminstrator")
-			{
-				bool status = ((Adminstrator)loggedin).addAdminstrator(user);
-				if (status)
-					return Ok("Adminstrator created successfully!");
-				else
-					return Ok("Error creating admin!");
-			}
-			else
-			{
-				return Ok("Error! No admin is detected!");
-			}
-		}
+			bool status = Adminstrator.addAdminstrator(user);
+            if (status)
+                return Ok("Adminstrator created successfully!");
+            else
+                return Ok("Error creating admin!");
+        }
     }
 }
