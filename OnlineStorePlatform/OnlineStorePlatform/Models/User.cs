@@ -61,5 +61,10 @@ namespace OnlineStorePlatform.Models
             }
             return null;
         }
+        public bool deleteUser()
+        {
+            DatabaseController db = new MySQLController();
+            return db.deleteUser(this);
+        }
     }
 }
