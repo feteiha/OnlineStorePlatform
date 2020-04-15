@@ -20,7 +20,7 @@ namespace OnlineStorePlatform.Models
         {
             bool canAdd = true;
             List<User> allUsers;
-            DatabaseController dataBase = new DatabaseController();
+            DatabaseController dataBase = new MySQLController();
             allUsers = dataBase.getAllUsers();
             for (int i = 0; i < allUsers.Count; i++)
             {
