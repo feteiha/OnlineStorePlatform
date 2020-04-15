@@ -14,7 +14,7 @@ namespace OnlineStorePlatform.Models
         }
         public List<User> showAllUsers()
         {
-            DatabaseController DBController = new DatabaseController();
+            DatabaseController DBController = new MySQLController();
             List<User> userList = DBController.getAllUsers();
             for ( int i = 0; i < userList.Count; i++)
             {
@@ -24,7 +24,7 @@ namespace OnlineStorePlatform.Models
         }
         public bool addAdminstrator(User newUser)
         {
-            DatabaseController DBController = new DatabaseController();
+            DatabaseController DBController = new MySQLController();
             User currentUser = DBController.getUser(newUser.username);
 
             if ( currentUser != null)

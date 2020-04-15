@@ -107,6 +107,7 @@ namespace Tests
 
 			Assert.AreEqual(contentResult2.Content, true);
 		}
+
 		[TestMethod]
 		public void Test5registerStoreOwner()
 		{
@@ -117,6 +118,25 @@ namespace Tests
 			s1.email = "StoreOwner1@yahoo.com";
 			s1.password = "123456789";
 			s1.fullname = "StoreOwner";
+			s1.age = 18;
+			s1.gender = "male";
+
+			IHttpActionResult registerStoreOwnerResult1 = userController.registerStoreOwner(s1);
+			var contentResult2 = registerStoreOwnerResult1 as OkNegotiatedContentResult<bool>;
+
+			Assert.AreEqual(contentResult2.Content, false);
+		}
+
+		[TestMethod]
+		public void TestregisterStoreOwnerWithSameEmail()
+		{
+			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
+
+			StoreOwner s1 = new StoreOwner();
+			s1.username = "Hatem Is A store Owner";
+			s1.email = "StoreOwner1@yahoo.com";
+			s1.password = "123456789";
+			s1.fullname = "HatemStoreOwner";
 			s1.age = 18;
 			s1.gender = "male";
 
