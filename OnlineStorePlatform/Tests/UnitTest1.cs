@@ -345,6 +345,24 @@ namespace Tests
 			var contentResult6 = result6 as OkNegotiatedContentResult<string>;
 			Assert.AreEqual(contentResult6.Content.ToString(), "Login Failed!");
 		}
+		[TestMethod]
+		public void Testlogin7() //Correct Email
+		{
+			OnlineStorePlatform.Controllers.UserController test6 = new OnlineStorePlatform.Controllers.UserController();
+			IHttpActionResult result6 = test6.login("storeOwner@email.com", "password");
+			var contentResult6 = result6 as OkNegotiatedContentResult<User>;
+
+			Assert.AreEqual(contentResult6.Content.email.ToString().ToLower(), "storeOwner@email.com");
+		}
+		[TestMethod]
+		public void Testlogin8() //Wrong Email
+		{
+			OnlineStorePlatform.Controllers.UserController test8 = new OnlineStorePlatform.Controllers.UserController();
+			IHttpActionResult result8 = test8.login("storeownerr@email.com", "password");
+			var contentResult8 = result8 as OkNegotiatedContentResult<User>;
+
+			Assert.AreEqual(contentResult8.Content.ToString(), "Login Failed!");
+		}
 
 
 		[TestMethod] // valid test case
