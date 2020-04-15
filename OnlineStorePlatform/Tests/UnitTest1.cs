@@ -10,11 +10,31 @@ namespace Tests
 	[TestClass]
 	public class UnitTest1
 	{
-	/// <summary>
-	///Register Users Tests -----------------------------------------------------------------------------------------------------------------------
-	/// </summary>
-
+		/// <summary>
+		///Register Users Tests -----------------------------------------------------------------------------------------------------------------------
+		/// </summary>
 		[TestMethod]
+
+		public void TestregisterNormalWithSameEmail()
+		{
+			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
+
+			NormalUser u3 = new NormalUser();
+			u3.username = "HatemMamdoh";
+			u3.email = "anaaa@yahoo.com";
+			u3.password = "123456789";
+			u3.fullname = "Hatem";
+			u3.age = 18;
+			u3.gender = "male";
+
+			IHttpActionResult registerNormalResult3 = userController.registerNormal(u3);
+			var contentResult3 = registerNormalResult3 as OkNegotiatedContentResult<bool>;
+
+			Assert.AreEqual(contentResult3.Content, false);
+
+		}
+		[TestMethod]
+
 		public void Test1registerNormal()
 		{
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
@@ -87,6 +107,7 @@ namespace Tests
 
 			Assert.AreEqual(contentResult2.Content, true);
 		}
+
 		[TestMethod]
 		public void Test5registerStoreOwner()
 		{
@@ -97,6 +118,25 @@ namespace Tests
 			s1.email = "StoreOwner1@yahoo.com";
 			s1.password = "123456789";
 			s1.fullname = "StoreOwner";
+			s1.age = 18;
+			s1.gender = "male";
+
+			IHttpActionResult registerStoreOwnerResult1 = userController.registerStoreOwner(s1);
+			var contentResult2 = registerStoreOwnerResult1 as OkNegotiatedContentResult<bool>;
+
+			Assert.AreEqual(contentResult2.Content, false);
+		}
+
+		[TestMethod]
+		public void TestregisterStoreOwnerWithSameEmail()
+		{
+			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
+
+			StoreOwner s1 = new StoreOwner();
+			s1.username = "Hatem Is A store Owner";
+			s1.email = "StoreOwner1@yahoo.com";
+			s1.password = "123456789";
+			s1.fullname = "HatemStoreOwner";
 			s1.age = 18;
 			s1.gender = "male";
 
@@ -241,11 +281,10 @@ namespace Tests
 		public void Testlogin1() //Correct credetentials
 		{
 			OnlineStorePlatform.Controllers.UserController test1 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result = test1.login("Hussien", "12345678");
+			IHttpActionResult result = test1.login("admin", "PASSword");
 			var contentResult = result as OkNegotiatedContentResult<User>;
 
-			Assert.AreEqual(contentResult.Content.username.ToString(), "Hussien");
-			Assert.AreEqual(contentResult.Content.password.ToString(), "12345678");
+			Assert.AreEqual(contentResult.Content.username.ToString(), "admin");
 
 		}
 
@@ -253,7 +292,7 @@ namespace Tests
 		public void Testlogin2() //Wrong password
 		{
 			OnlineStorePlatform.Controllers.UserController test2 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result2 = test2.login("Hussien", "123456789");
+			IHttpActionResult result2 = test2.login("admin", "12345678");
 			var contentResult2 = result2 as OkNegotiatedContentResult<string>;
 			Assert.AreEqual(contentResult2.Content.ToString(), "Login Failed!");
 		}
@@ -261,7 +300,7 @@ namespace Tests
 		public void Testlogin3() //Wrong Username
 		{
 			OnlineStorePlatform.Controllers.UserController test3 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result3 = test3.login("WrongUserName", "anypassword");
+			IHttpActionResult result3 = test3.login("adminadmin", "anypassword");
 			var contentResult3 = result3 as OkNegotiatedContentResult<string>;
 			Assert.AreEqual(contentResult3.Content.ToString(), "Login Failed!");
 
@@ -270,31 +309,47 @@ namespace Tests
 		public void Testlogin4() //Ignore Case in Username
 		{
 			OnlineStorePlatform.Controllers.UserController test4 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result4 = test4.login("HUSSIEN", "12345678");
+			IHttpActionResult result4 = test4.login("ADMIN", "PASSword");
 			var contentResult4 = result4 as OkNegotiatedContentResult<User>;
 
-			Assert.AreEqual(contentResult4.Content.username.ToString().ToLower(), "hussien");
-			Assert.AreEqual(contentResult4.Content.password.ToString(), "12345678");
+			Assert.AreEqual(contentResult4.Content.username.ToString().ToLower(), "admin");
 
 		}
 		[TestMethod]
 		public void Testlogin5() //Case Sensitive in correct password
 		{
 			OnlineStorePlatform.Controllers.UserController test5 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result5 = test5.login("aho", "testSensetivity");
+			IHttpActionResult result5 = test5.login("normal", "passWORD");
 			var contentResult5 = result5 as OkNegotiatedContentResult<User>;
 
-			Assert.AreEqual(contentResult5.Content.username.ToString().ToLower(), "aho");
-			Assert.AreEqual(contentResult5.Content.password.ToString(), "testSensetivity");
+			Assert.AreEqual(contentResult5.Content.username.ToString().ToLower(), "admin");
 
 		}
 		[TestMethod]
 		public void Testlogin6() //Case Sensitive in wrong password
 		{
 			OnlineStorePlatform.Controllers.UserController test6 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result6 = test6.login("aho", "testsensetivity");
+			IHttpActionResult result6 = test6.login("normaal", "passWORD");
 			var contentResult6 = result6 as OkNegotiatedContentResult<string>;
 			Assert.AreEqual(contentResult6.Content.ToString(), "Login Failed!");
+		}
+		[TestMethod]
+		public void Testlogin7() //Correct Email
+		{
+			OnlineStorePlatform.Controllers.UserController test6 = new OnlineStorePlatform.Controllers.UserController();
+			IHttpActionResult result6 = test6.login("storeOwner@email.com", "password");
+			var contentResult6 = result6 as OkNegotiatedContentResult<User>;
+
+			Assert.AreEqual(contentResult6.Content.email.ToString().ToLower(), "storeOwner@email.com");
+		}
+		[TestMethod]
+		public void Testlogin8() //Wrong Email
+		{
+			OnlineStorePlatform.Controllers.UserController test8 = new OnlineStorePlatform.Controllers.UserController();
+			IHttpActionResult result8 = test8.login("storeownerr@email.com", "password");
+			var contentResult8 = result8 as OkNegotiatedContentResult<User>;
+
+			Assert.AreEqual(contentResult8.Content.ToString(), "Login Failed!");
 		}
 
 

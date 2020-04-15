@@ -20,11 +20,11 @@ namespace OnlineStorePlatform.Models
         {
             bool canAdd = true;
             List<User> allUsers;
-            DatabaseController dataBase = new DatabaseController();
+            DatabaseController dataBase = new MySQLController();
             allUsers = dataBase.getAllUsers();
             for (int i = 0; i < allUsers.Count; i++)
             {
-                if (this.username == allUsers[i].username)
+                if (this.username == allUsers[i].username || this.email == allUsers[i].email)
                     canAdd = false;
             }
             if (!canAdd || this.password.Length < 8 || this.age < 18)
