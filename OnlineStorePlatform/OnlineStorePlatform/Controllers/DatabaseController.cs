@@ -60,5 +60,20 @@ namespace OnlineStorePlatform.Controllers
             db.SubmitChanges();
             return true;
         }
+        public bool deleteUser(String identifier)
+        {
+            OnlineStoreDBDataContext db = new OnlineStoreDBDataContext();
+            DB_User DBuser = (
+                            from u in db.DB_Users
+                            where u.DB_Username == identifier
+                            || u.DB_Email == identifier
+                            select (u)
+                        ).FirstOrDefault();
+            if (DBuser == null)
+                return null;
+            db.DB_Users.DeleteOnSubmit(DBuser);
+            db.SubmitChanges();
+            return true;
+        }
     }
 }
