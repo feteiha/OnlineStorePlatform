@@ -41,12 +41,14 @@ namespace OnlineStorePlatform.Controllers
 
 		[Route("showall/")]
 		[HttpGet]
+        [Authentication(new string[] { "Adminstrator" }, false)]
         public IHttpActionResult showAll()
         {
             return Ok(Adminstrator.showAllUsers());
         }
 		[Route("addadmin/")]
 		[HttpPost]
+        [Authentication(new string[] { "adminstrator" }, false)]
         public IHttpActionResult addAdmin(Adminstrator user)
         {
 			bool status = Adminstrator.addAdminstrator(user);
