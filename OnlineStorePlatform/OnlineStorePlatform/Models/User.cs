@@ -45,7 +45,7 @@ namespace OnlineStorePlatform.Models
 
 		public static User login(string identifier, string password)
         {
-            DatabaseController DBController = new DatabaseController();
+            DatabaseController DBController = new MySQLController();
             User user = DBController.getUser(identifier);
 
             if (user != null)
