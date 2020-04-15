@@ -144,30 +144,18 @@ namespace Tests
 	/// <summary>
 	///ADD ADMIN TESTS -----------------------------------------------------------------------------------------------------------------------
 	/// </summary>
-        [TestMethod]
-        public void addAdmin_Test1()
-        {
-            string prefix = "addAdminTest_"; 
-            OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
-
-            // Admin not in system try to add new admin
-            Adminstrator newAdmin = SetAdmin(prefix + "user1", "m1@yahoo.com");
-            IHttpActionResult result = userController.addAdmin(prefix + "admin1", "addAdminTest_12345678", newAdmin);
-            var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Error! Login Failed!");
-        }
 
         [TestMethod]
         public void addAdmin_Test2()
         {
-            string prefix = "addAdminTest_";
             OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
             // admin in system try to add admin in system
-            Adminstrator newAdmin = SetAdmin(prefix + "user2", "m2@yahoo.com");
-            IHttpActionResult result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin);
+            Adminstrator newAdmin = SetAdmin("AddAdminUser2", "m2@yahoo.com");
+            IHttpActionResult result = userController.addAdmin("admin", "addAdminTest_12345678", newAdmin);
+            
 
-			var contentResult = result as OkNegotiatedContentResult<string>;
+            var contentResult = result as OkNegotiatedContentResult<string>;
             Assert.AreEqual(contentResult.Content.ToString(), "Adminstrator created successfully!");
         }
 
