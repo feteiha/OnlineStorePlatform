@@ -364,32 +364,33 @@ namespace Tests
 			var contentResult6 = result6 as OkNegotiatedContentResult<string>;
 			Assert.AreEqual(contentResult6.Content.ToString(), "Login Failed!");
 		}
+		[TestMethod]
+		public void Testlogin7() //Correct Email
+		{
+			OnlineStorePlatform.Controllers.UserController test6 = new OnlineStorePlatform.Controllers.UserController();
+			IHttpActionResult result6 = test6.login("storeOwner@email.com", "password");
+			var contentResult6 = result6 as OkNegotiatedContentResult<User>;
+
+			Assert.AreEqual(contentResult6.Content.email.ToString().ToLower(), "storeOwner@email.com");
+		}
+		[TestMethod]
+		public void Testlogin8() //Wrong Email
+		{
+			OnlineStorePlatform.Controllers.UserController test8 = new OnlineStorePlatform.Controllers.UserController();
+			IHttpActionResult result8 = test8.login("storeownerr@email.com", "password");
+			var contentResult8 = result8 as OkNegotiatedContentResult<User>;
+
+			Assert.AreEqual(contentResult8.Content.ToString(), "Login Failed!");
+		}
 
 
 		[TestMethod] // valid test case
         public void Testshowall_1()
         {
             OnlineStorePlatform.Controllers.UserController test = new OnlineStorePlatform.Controllers.UserController();
-            IHttpActionResult result = test.showAll("khaled", "12345678");
+            IHttpActionResult result = test.showAll();
             var contentResult = result as OkNegotiatedContentResult<List<User>>;
             Assert.AreNotEqual(contentResult.Content.Count, 0);
-        }
-
-        [TestMethod] // Not valid (wrong password)
-        public void Testshowall_2()
-        {
-            OnlineStorePlatform.Controllers.UserController test = new OnlineStorePlatform.Controllers.UserController();
-            IHttpActionResult result = test.showAll("khaled", "123");
-            var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Error! Login Failed!");
-        }
-        [TestMethod] // Not valid (normalUser)
-        public void Testshowall_3()
-        {
-            OnlineStorePlatform.Controllers.UserController test = new OnlineStorePlatform.Controllers.UserController();
-            IHttpActionResult result = test.showAll("normal", "12345678");
-            var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Error! No admin is detected!");
         }
 
 	/// <summary>
