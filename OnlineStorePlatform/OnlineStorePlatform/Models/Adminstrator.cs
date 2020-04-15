@@ -12,7 +12,7 @@ namespace OnlineStorePlatform.Models
         public Adminstrator(DB_User u) : base(u)
         {
         }
-        public List<User> showAllUsers()
+        public static List<User> showAllUsers()
         {
             DatabaseController DBController = new MySQLController();
             List<User> userList = DBController.getAllUsers();
@@ -22,7 +22,7 @@ namespace OnlineStorePlatform.Models
             }
             return userList;
         }
-        public bool addAdminstrator(User newUser)
+        public static bool addAdminstrator(User newUser)
         {
             DatabaseController DBController = new MySQLController();
             User currentUser = DBController.getUser(newUser.username);
