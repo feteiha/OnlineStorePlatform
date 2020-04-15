@@ -34,6 +34,7 @@ namespace OnlineStorePlatform
                 if (user == null)
                 {
                     actionContext.Response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+					return;
 
                 }
                 string userType = user.GetType().Name;

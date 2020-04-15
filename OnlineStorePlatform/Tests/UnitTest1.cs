@@ -293,11 +293,10 @@ namespace Tests
 		public void Testlogin1() //Correct credetentials
 		{
 			OnlineStorePlatform.Controllers.UserController test1 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result = test1.login("Hussien", "12345678");
+			IHttpActionResult result = test1.login("admin", "PASSword");
 			var contentResult = result as OkNegotiatedContentResult<User>;
 
-			Assert.AreEqual(contentResult.Content.username.ToString(), "Hussien");
-			Assert.AreEqual(contentResult.Content.password.ToString(), "12345678");
+			Assert.AreEqual(contentResult.Content.username.ToString(), "admin");
 
 		}
 
@@ -305,7 +304,7 @@ namespace Tests
 		public void Testlogin2() //Wrong password
 		{
 			OnlineStorePlatform.Controllers.UserController test2 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result2 = test2.login("Hussien", "123456789");
+			IHttpActionResult result2 = test2.login("admin", "12345678");
 			var contentResult2 = result2 as OkNegotiatedContentResult<string>;
 			Assert.AreEqual(contentResult2.Content.ToString(), "Login Failed!");
 		}
@@ -313,7 +312,7 @@ namespace Tests
 		public void Testlogin3() //Wrong Username
 		{
 			OnlineStorePlatform.Controllers.UserController test3 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result3 = test3.login("WrongUserName", "anypassword");
+			IHttpActionResult result3 = test3.login("adminadmin", "anypassword");
 			var contentResult3 = result3 as OkNegotiatedContentResult<string>;
 			Assert.AreEqual(contentResult3.Content.ToString(), "Login Failed!");
 
@@ -322,29 +321,27 @@ namespace Tests
 		public void Testlogin4() //Ignore Case in Username
 		{
 			OnlineStorePlatform.Controllers.UserController test4 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result4 = test4.login("HUSSIEN", "12345678");
+			IHttpActionResult result4 = test4.login("ADMIN", "PASSword");
 			var contentResult4 = result4 as OkNegotiatedContentResult<User>;
 
-			Assert.AreEqual(contentResult4.Content.username.ToString().ToLower(), "hussien");
-			Assert.AreEqual(contentResult4.Content.password.ToString(), "12345678");
+			Assert.AreEqual(contentResult4.Content.username.ToString().ToLower(), "admin");
 
 		}
 		[TestMethod]
 		public void Testlogin5() //Case Sensitive in correct password
 		{
 			OnlineStorePlatform.Controllers.UserController test5 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result5 = test5.login("aho", "testSensetivity");
+			IHttpActionResult result5 = test5.login("normal", "passWORD");
 			var contentResult5 = result5 as OkNegotiatedContentResult<User>;
 
-			Assert.AreEqual(contentResult5.Content.username.ToString().ToLower(), "aho");
-			Assert.AreEqual(contentResult5.Content.password.ToString(), "testSensetivity");
+			Assert.AreEqual(contentResult5.Content.username.ToString().ToLower(), "admin");
 
 		}
 		[TestMethod]
 		public void Testlogin6() //Case Sensitive in wrong password
 		{
 			OnlineStorePlatform.Controllers.UserController test6 = new OnlineStorePlatform.Controllers.UserController();
-			IHttpActionResult result6 = test6.login("aho", "testsensetivity");
+			IHttpActionResult result6 = test6.login("normaal", "passWORD");
 			var contentResult6 = result6 as OkNegotiatedContentResult<string>;
 			Assert.AreEqual(contentResult6.Content.ToString(), "Login Failed!");
 		}
