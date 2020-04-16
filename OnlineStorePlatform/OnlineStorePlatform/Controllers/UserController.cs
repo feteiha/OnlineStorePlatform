@@ -39,16 +39,17 @@ namespace OnlineStorePlatform.Controllers
 			return Ok(status);
 		}
 
+        [Authorize(Roles =  "Adminstrator")]
 		[Route("showall/")]
 		[HttpGet]
-        [Authentication(new string[] { "Adminstrator" }, false)]
         public IHttpActionResult showAll()
         {
             return Ok(Adminstrator.showAllUsers());
         }
-		[Route("addadmin/")]
+
+        [Authorize(Roles = "Adminstrator")]
+        [Route("addadmin/")]
 		[HttpPost]
-        [Authentication(new string[] { "adminstrator" }, false)]
         public IHttpActionResult addAdmin(Adminstrator user)
         {
 			bool status = Adminstrator.addAdminstrator(user);
