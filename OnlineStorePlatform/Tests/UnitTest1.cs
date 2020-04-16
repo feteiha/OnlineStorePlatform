@@ -13,6 +13,28 @@ namespace Tests
 		/// <summary>
 		///Register Users Tests -----------------------------------------------------------------------------------------------------------------------
 		/// </summary>
+
+		[TestMethod]
+		public void Test2registerNormal()
+		{
+			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
+
+			NormalUser u = new NormalUser();
+			u.username = "normal2";
+			u.email = "normal2@email.com";
+			u.password = "passWORD";
+			u.fullname = "FullnameNormal";
+			u.age = 18;
+			u.gender = "male";
+
+			IHttpActionResult registerNormalResult = userController.registerNormal(u);
+			var contentResult = registerNormalResult as OkNegotiatedContentResult<bool>;
+			u.deleteUser();
+
+			Assert.AreEqual(contentResult.Content, true);
+
+		}
+
 		[TestMethod]
 
 		public void TestregisterNormalWithSameEmail()
@@ -21,7 +43,7 @@ namespace Tests
 
 			NormalUser u3 = new NormalUser();
 			u3.username = "HatemMamdoh";
-			u3.email = "anaaa@yahoo.com";
+			u3.email = "normal@email.com";
 			u3.password = "123456789";
 			u3.fullname = "Hatem";
 			u3.age = 18;
@@ -40,10 +62,10 @@ namespace Tests
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
 			NormalUser u3 = new NormalUser();
-			u3.username = "Anaaaaaaaaaaaa";
-			u3.email = "anaaaaaaaa@yahoo.com";
+			u3.username = "HatemMamdoh";
+			u3.email = "HatemMamdoh@email.com";
 			u3.password = "123456789";
-			u3.fullname = "AnaaaHatem";
+			u3.fullname = "HATEM";
 			u3.age = 17;
 			u3.gender = "male";
 
@@ -51,25 +73,6 @@ namespace Tests
 			var contentResult3 = registerNormalResult3 as OkNegotiatedContentResult<bool>;
 
 			Assert.AreEqual(contentResult3.Content, false);
-
-		}
-		[TestMethod]
-		public void Test2registerNormal()
-		{
-			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
-
-			NormalUser u = new NormalUser();
-			u.username = "Anaaaaaaaaaaaaaaaaaaa";
-			u.email = "anaaa@yahoo.com";
-			u.password = "123456789";
-			u.fullname = "AnaaaHatem";
-			u.age = 18;
-			u.gender = "male";
-
-			IHttpActionResult registerNormalResult = userController.registerNormal(u);
-			var contentResult = registerNormalResult as OkNegotiatedContentResult<bool>;
-
-			Assert.AreEqual(contentResult.Content, true);
 		}
 		[TestMethod]
 		public void Test3registerNormal()
@@ -77,10 +80,10 @@ namespace Tests
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
 			NormalUser u2 = new NormalUser();
-			u2.username = "Anaaaa";
-			u2.email = "anaaa@yahoo.com";
+			u2.username = "normal";
+			u2.email = "HatemMamdoh@yahoo.com";
 			u2.password = "123456789";
-			u2.fullname = "AnaaaHatem";
+			u2.fullname = "Hatem";
 			u2.age = 18;
 			u2.gender = "male";
 
@@ -88,6 +91,7 @@ namespace Tests
 			var contentResult2 = registerNormalResult2 as OkNegotiatedContentResult<bool>;
 
 			Assert.AreEqual(contentResult2.Content, false);
+
 		}
 		[TestMethod]
 		public void Test4registerStoreOwner()
@@ -95,17 +99,19 @@ namespace Tests
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
 			StoreOwner s1 = new StoreOwner();
-			s1.username = "StoreOwner1";
-			s1.email = "StoreOwner1@yahoo.com";
-			s1.password = "123456789";
-			s1.fullname = "StoreOwner";
+			s1.username = "storeowner2";
+			s1.email = "storeOwner2@email.com";
+			s1.password = "password";
+			s1.fullname = "FullnameStore";
 			s1.age = 18;
 			s1.gender = "male";
 
 			IHttpActionResult registerStoreOwnerResult1 = userController.registerStoreOwner(s1);
 			var contentResult2 = registerStoreOwnerResult1 as OkNegotiatedContentResult<bool>;
 
+			s1.deleteUser();
 			Assert.AreEqual(contentResult2.Content, true);
+
 		}
 
 		[TestMethod]
@@ -114,7 +120,7 @@ namespace Tests
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
 			StoreOwner s1 = new StoreOwner();
-			s1.username = "StoreOwner1";
+			s1.username = "storeowner";
 			s1.email = "StoreOwner1@yahoo.com";
 			s1.password = "123456789";
 			s1.fullname = "StoreOwner";
@@ -125,6 +131,7 @@ namespace Tests
 			var contentResult2 = registerStoreOwnerResult1 as OkNegotiatedContentResult<bool>;
 
 			Assert.AreEqual(contentResult2.Content, false);
+
 		}
 
 		[TestMethod]
@@ -133,8 +140,8 @@ namespace Tests
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
 			StoreOwner s1 = new StoreOwner();
-			s1.username = "Hatem Is A store Owner";
-			s1.email = "StoreOwner1@yahoo.com";
+			s1.username = "HatemIsAstoreOwner";
+			s1.email = "storeOwner@email.com";
 			s1.password = "123456789";
 			s1.fullname = "HatemStoreOwner";
 			s1.age = 18;
@@ -144,6 +151,7 @@ namespace Tests
 			var contentResult2 = registerStoreOwnerResult1 as OkNegotiatedContentResult<bool>;
 
 			Assert.AreEqual(contentResult2.Content, false);
+
 		}
 		[TestMethod]
 		public void Test6registerStoreOwner()
@@ -162,6 +170,7 @@ namespace Tests
 			var contentResult2 = registerStoreOwnerResult1 as OkNegotiatedContentResult<bool>;
 
 			Assert.AreEqual(contentResult2.Content, false);
+
 		}
 		[TestMethod]
 		public void Test7registerStoreOwner()
@@ -180,107 +189,65 @@ namespace Tests
 			var contentResult2 = registerStoreOwnerResult1 as OkNegotiatedContentResult<bool>;
 
 			Assert.AreEqual(contentResult2.Content, false);
+
 		}
 	/// <summary>
 	///ADD ADMIN TESTS -----------------------------------------------------------------------------------------------------------------------
 	/// </summary>
+
         [TestMethod]
         public void addAdmin_Test1()
         {
-            string prefix = "addAdminTest_"; 
             OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
-            // Admin not in system try to add new admin
-            Adminstrator newAdmin = SetAdmin(prefix + "user1", "m1@yahoo.com");
-            IHttpActionResult result = userController.addAdmin(prefix + "admin1", "addAdminTest_12345678", newAdmin);
+            // admin in system try to add admin in system
+            Adminstrator newAdmin = SetAdmin("AddAdminUser1", "m1@yahoo.com");
+            IHttpActionResult result = userController.addAdmin(newAdmin);
+            newAdmin.deleteUser();
+
             var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Error! Login Failed!");
+            Assert.AreEqual(contentResult.Content.ToString(), "Adminstrator created successfully!");
         }
 
         [TestMethod]
         public void addAdmin_Test2()
         {
-            string prefix = "addAdminTest_";
             OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
-            // admin in system try to add admin in system
-            Adminstrator newAdmin = SetAdmin(prefix + "user2", "m2@yahoo.com");
-            IHttpActionResult result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin);
+            // Admin in system try to add admin in system
+            Adminstrator newAdmin = SetAdmin("admin2", "admin2@email.com");
+            IHttpActionResult result = userController.addAdmin(newAdmin);
 
 			var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Adminstrator created successfully!");
+            Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
         }
 
         [TestMethod]
         public void addAdmin_Test3()
         {
-            string prefix = "addAdminTest_";
             OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
-            // User in system try to add Admin in system
-            Adminstrator newAdmin = SetAdmin(prefix + "user3" , "m3@yahoo.com");
-            NormalUser user2 = setNormalUser(prefix + "user4" , "m4@yahoo.com");
-            userController.registerNormal(user2);
-
-            IHttpActionResult result = userController.addAdmin(prefix + "user4", "addAdminTest_12345678", newAdmin);
+            // Admin in system try to add admin in system
+            // both new admin have the same email
+            Adminstrator newAdmin = SetAdmin("user5", "admin@email.com");
+            IHttpActionResult result = userController.addAdmin(newAdmin);
 
 			var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Error! No admin is detected!");
+            Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
         }
 
         [TestMethod]
         public void addAdmin_Test4()
         {
-            string prefix = "addAdminTest_";
-            OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
-
-            // Admin in system try to add admin in system
-            Adminstrator newAdmin = SetAdmin(prefix + "master", "master@yahoo.com");
-            IHttpActionResult result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin);
-
-			var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
-        }
-
-        [TestMethod]
-        public void addAdmin_Test5()
-        {
-            string prefix = "addAdminTest_";
-            OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
-
-            // Admin in system try to add admin in system
-            // both new admin have the same email
-            Adminstrator newAdmin1 = SetAdmin(prefix + "user5", "m5@yahoo.com");
-            Adminstrator newAdmin2 = SetAdmin(prefix + "user6", "m5@yahoo.com");
-            IHttpActionResult result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin1);
-
-			var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Adminstrator created successfully!");
-
-            result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin2);
-
-			contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
-        }
-
-        [TestMethod]
-        public void addAdmin_Test6()
-        {
-            string prefix = "addAdminTest_";
             OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
             // Admin in system try to add admin in system
             // both new admin have the user name email
-            Adminstrator newAdmin1 = SetAdmin(prefix + "user8", "m8@yahoo.com");
-            Adminstrator newAdmin2 = SetAdmin(prefix + "user8", "m9@yahoo.com");
-            IHttpActionResult result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin1);
 
-			var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Adminstrator created successfully!");
+            Adminstrator newAdmin = SetAdmin("admin", "user6@email.com");
+            IHttpActionResult result = userController.addAdmin(newAdmin);
 
-            result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin2);
-
-			contentResult = result as OkNegotiatedContentResult<string>;
+            var contentResult = result as OkNegotiatedContentResult<string>;
             Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
         }
 
@@ -334,7 +301,7 @@ namespace Tests
 			IHttpActionResult result5 = test5.login("normal", "passWORD");
 			var contentResult5 = result5 as OkNegotiatedContentResult<User>;
 
-			Assert.AreEqual(contentResult5.Content.username.ToString().ToLower(), "admin");
+			Assert.AreEqual(contentResult5.Content.username.ToString().ToLower(), "normal");
 
 		}
 		[TestMethod]
@@ -352,14 +319,14 @@ namespace Tests
 			IHttpActionResult result6 = test6.login("storeOwner@email.com", "password");
 			var contentResult6 = result6 as OkNegotiatedContentResult<User>;
 
-			Assert.AreEqual(contentResult6.Content.email.ToString().ToLower(), "storeOwner@email.com");
+			Assert.AreEqual(contentResult6.Content.email.ToString(), "storeOwner@email.com");
 		}
 		[TestMethod]
 		public void Testlogin8() //Wrong Email
 		{
 			OnlineStorePlatform.Controllers.UserController test8 = new OnlineStorePlatform.Controllers.UserController();
 			IHttpActionResult result8 = test8.login("storeownerr@email.com", "password");
-			var contentResult8 = result8 as OkNegotiatedContentResult<User>;
+			var contentResult8 = result8 as OkNegotiatedContentResult<string>;
 
 			Assert.AreEqual(contentResult8.Content.ToString(), "Login Failed!");
 		}
