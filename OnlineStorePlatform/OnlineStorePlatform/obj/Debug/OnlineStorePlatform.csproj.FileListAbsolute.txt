@@ -386,3 +386,15 @@ C:\Users\HATEM .LAPTOP-M7JGO3P2\Desktop\Project\OnlineStorePlatform\OnlineStoreP
 C:\Users\HATEM .LAPTOP-M7JGO3P2\Desktop\Project\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\obj\Debug\OnlineStorePlatform.dll
 C:\Users\HATEM .LAPTOP-M7JGO3P2\Desktop\Project\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\obj\Debug\OnlineStorePlatform.pdb
 C:\Users\Khaled-Predator\Desktop\FCI\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\obj\Debug\OnlineStorePlatform.csprojAssemblyReference.cache
+C:\Users\DELL\Desktop\6th Term\SE2\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.Owin.Cors.dll
+C:\Users\DELL\Desktop\6th Term\SE2\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.Owin.dll
+C:\Users\DELL\Desktop\6th Term\SE2\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\DELL\Desktop\6th Term\SE2\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.Owin.Security.dll
+C:\Users\DELL\Desktop\6th Term\SE2\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\DELL\Desktop\6th Term\SE2\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Owin.dll
+C:\Users\DELL\Desktop\6th Term\SE2\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\System.Web.Cors.dll
+C:\Users\DELL\Desktop\6th Term\SE2\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.Owin.xml
+C:\Users\DELL\Desktop\6th Term\SE2\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.Owin.Cors.xml
+C:\Users\DELL\Desktop\6th Term\SE2\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\DELL\Desktop\6th Term\SE2\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.Owin.Security.xml
+C:\Users\DELL\Desktop\6th Term\SE2\OnlineStorePlatform\OnlineStorePlatform\OnlineStorePlatform\bin\Microsoft.Owin.Security.OAuth.xml
