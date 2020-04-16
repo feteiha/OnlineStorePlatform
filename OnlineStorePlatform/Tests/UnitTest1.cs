@@ -20,8 +20,8 @@ namespace Tests
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
 			NormalUser u = new NormalUser();
-			u.username = "normal";
-			u.email = "normal@email.com";
+			u.username = "normal2";
+			u.email = "normal2@email.com";
 			u.password = "passWORD";
 			u.fullname = "FullnameNormal";
 			u.age = 18;
@@ -29,10 +29,10 @@ namespace Tests
 
 			IHttpActionResult registerNormalResult = userController.registerNormal(u);
 			var contentResult = registerNormalResult as OkNegotiatedContentResult<bool>;
+			u.deleteUser();
 
 			Assert.AreEqual(contentResult.Content, true);
 
-			u.deleteUser();
 		}
 
 		[TestMethod]
@@ -53,7 +53,6 @@ namespace Tests
 			var contentResult3 = registerNormalResult3 as OkNegotiatedContentResult<bool>;
 
 			Assert.AreEqual(contentResult3.Content, false);
-			u3.deleteUser();
 
 		}
 		[TestMethod]
@@ -74,9 +73,6 @@ namespace Tests
 			var contentResult3 = registerNormalResult3 as OkNegotiatedContentResult<bool>;
 
 			Assert.AreEqual(contentResult3.Content, false);
-
-			u3.deleteUser();
-
 		}
 		[TestMethod]
 		public void Test3registerNormal()
@@ -87,7 +83,7 @@ namespace Tests
 			u2.username = "normal";
 			u2.email = "HatemMamdoh@yahoo.com";
 			u2.password = "123456789";
-			u2.fullname = "AnaaaHatem";
+			u2.fullname = "Hatem";
 			u2.age = 18;
 			u2.gender = "male";
 
@@ -96,7 +92,6 @@ namespace Tests
 
 			Assert.AreEqual(contentResult2.Content, false);
 
-			u2.deleteUser();
 		}
 		[TestMethod]
 		public void Test4registerStoreOwner()
@@ -104,8 +99,8 @@ namespace Tests
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
 			StoreOwner s1 = new StoreOwner();
-			s1.username = "storeowner";
-			s1.email = "storeOwner@email.com";
+			s1.username = "storeowner2";
+			s1.email = "storeOwner2@email.com";
 			s1.password = "password";
 			s1.fullname = "FullnameStore";
 			s1.age = 18;
@@ -114,9 +109,9 @@ namespace Tests
 			IHttpActionResult registerStoreOwnerResult1 = userController.registerStoreOwner(s1);
 			var contentResult2 = registerStoreOwnerResult1 as OkNegotiatedContentResult<bool>;
 
+			s1.deleteUser();
 			Assert.AreEqual(contentResult2.Content, true);
 
-			s1.deleteUser();
 		}
 
 		[TestMethod]
@@ -137,7 +132,6 @@ namespace Tests
 
 			Assert.AreEqual(contentResult2.Content, false);
 
-			s1.deleteUser();
 		}
 
 		[TestMethod]
@@ -146,7 +140,7 @@ namespace Tests
 			OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
 			StoreOwner s1 = new StoreOwner();
-			s1.username = "Hatem Is A store Owner";
+			s1.username = "HatemIsAstoreOwner";
 			s1.email = "storeOwner@email.com";
 			s1.password = "123456789";
 			s1.fullname = "HatemStoreOwner";
@@ -158,7 +152,6 @@ namespace Tests
 
 			Assert.AreEqual(contentResult2.Content, false);
 
-			s1.deleteUser();
 		}
 		[TestMethod]
 		public void Test6registerStoreOwner()
@@ -178,7 +171,6 @@ namespace Tests
 
 			Assert.AreEqual(contentResult2.Content, false);
 
-			s1.deleteUser();
 		}
 		[TestMethod]
 		public void Test7registerStoreOwner()
@@ -198,7 +190,6 @@ namespace Tests
 
 			Assert.AreEqual(contentResult2.Content, false);
 
-			s1.deleteUser();
 		}
 	/// <summary>
 	///ADD ADMIN TESTS -----------------------------------------------------------------------------------------------------------------------
