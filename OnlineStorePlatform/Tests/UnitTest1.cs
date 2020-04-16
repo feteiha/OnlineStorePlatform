@@ -194,59 +194,59 @@ namespace Tests
 	/// <summary>
 	///ADD ADMIN TESTS -----------------------------------------------------------------------------------------------------------------------
 	/// </summary>
+
         [TestMethod]
         public void addAdmin_Test1()
         {
-            string prefix = "addAdminTest_"; 
             OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
-            // Admin not in system try to add new admin
-            Adminstrator newAdmin = SetAdmin(prefix + "user1", "m1@yahoo.com");
-            IHttpActionResult result = userController.addAdmin(prefix + "admin1", "addAdminTest_12345678", newAdmin);
+            // admin in system try to add admin in system
+            Adminstrator newAdmin = SetAdmin("AddAdminUser1", "m1@yahoo.com");
+            IHttpActionResult result = userController.addAdmin(newAdmin);
+            newAdmin.deleteUser();
+
             var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Error! Login Failed!");
+            Assert.AreEqual(contentResult.Content.ToString(), "Adminstrator created successfully!");
         }
 
         [TestMethod]
         public void addAdmin_Test2()
         {
-            string prefix = "addAdminTest_";
-            OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
-
-            // admin in system try to add admin in system
-            Adminstrator newAdmin = SetAdmin(prefix + "user2", "m2@yahoo.com");
-            IHttpActionResult result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin);
-
-			var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Adminstrator created successfully!");
-        }
-
-        [TestMethod]
-        public void addAdmin_Test3()
-        {
-            string prefix = "addAdminTest_";
             OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
             // User in system try to add Admin in system
-            Adminstrator newAdmin = SetAdmin(prefix + "user3" , "m3@yahoo.com");
-            NormalUser user2 = setNormalUser(prefix + "user4" , "m4@yahoo.com");
-            userController.registerNormal(user2);
-
-            IHttpActionResult result = userController.addAdmin(prefix + "user4", "addAdminTest_12345678", newAdmin);
+            Adminstrator newAdmin = SetAdmin("user2" , "m2@yahoo.com");
+            IHttpActionResult result = userController.addAdmin(newAdmin);
+            newAdmin.deleteUser();
 
 			var contentResult = result as OkNegotiatedContentResult<string>;
             Assert.AreEqual(contentResult.Content.ToString(), "Error! No admin is detected!");
         }
 
         [TestMethod]
-        public void addAdmin_Test4()
+        public void addAdmin_Test3()
         {
-            string prefix = "addAdminTest_";
             OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
             // Admin in system try to add admin in system
-            Adminstrator newAdmin = SetAdmin(prefix + "master", "master@yahoo.com");
-            IHttpActionResult result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin);
+            Adminstrator newAdmin = SetAdmin("admin2", "admin2@email.com");
+            IHttpActionResult result = userController.addAdmin(newAdmin);
+            newAdmin.deleteUser();
+
+			var contentResult = result as OkNegotiatedContentResult<string>;
+            Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
+        }
+
+        [TestMethod]
+        public void addAdmin_Test4()
+        {
+            OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
+
+            // Admin in system try to add admin in system
+            // both new admin have the same email
+            Adminstrator newAdmin = SetAdmin("user5", "admin@email.com");
+            IHttpActionResult result = userController.addAdmin(newAdmin);
+            newAdmin.deleteUser();
 
 			var contentResult = result as OkNegotiatedContentResult<string>;
             Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
@@ -255,42 +255,16 @@ namespace Tests
         [TestMethod]
         public void addAdmin_Test5()
         {
-            string prefix = "addAdminTest_";
-            OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
-
-            // Admin in system try to add admin in system
-            // both new admin have the same email
-            Adminstrator newAdmin1 = SetAdmin(prefix + "user5", "m5@yahoo.com");
-            Adminstrator newAdmin2 = SetAdmin(prefix + "user6", "m5@yahoo.com");
-            IHttpActionResult result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin1);
-
-			var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Adminstrator created successfully!");
-
-            result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin2);
-
-			contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
-        }
-
-        [TestMethod]
-        public void addAdmin_Test6()
-        {
-            string prefix = "addAdminTest_";
             OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
             // Admin in system try to add admin in system
             // both new admin have the user name email
-            Adminstrator newAdmin1 = SetAdmin(prefix + "user8", "m8@yahoo.com");
-            Adminstrator newAdmin2 = SetAdmin(prefix + "user8", "m9@yahoo.com");
-            IHttpActionResult result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin1);
 
-			var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Adminstrator created successfully!");
+            Adminstrator newAdmin = SetAdmin("admin", "user6@email.com");
+            IHttpActionResult result = userController.addAdmin(newAdmin);
+            newAdmin.deleteUser();
 
-            result = userController.addAdmin(prefix + "master", "addAdminTest_12345678", newAdmin2);
-
-			contentResult = result as OkNegotiatedContentResult<string>;
+            var contentResult = result as OkNegotiatedContentResult<string>;
             Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
         }
 
