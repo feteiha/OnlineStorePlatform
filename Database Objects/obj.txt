@@ -1,38 +1,14 @@
-//List All Users 
+delete DB_User;
+INSERT INTO DB_User ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) 
+VALUES ('FullnameAdmin', 'admin', 'admin@email.com', 'PASSword', 0, 18, 'male');
 
-INSERT [dbo].[DB_User] ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) VALUES (N'KhaledElhadary', N'khaled', N'khaled@email.com', N'12345678', 0, 20, N'male');
+INSERT INTO DB_User ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) 
+VALUES ('FullnameAdmin2', 'admin2', 'admin2@email.com', 'PASSword', 0, 18, 'male');
 
-INSERT [dbo].[DB_User] ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) VALUES (N'normal', N'normal', N'normal@email.com', N'12345678', 2, 20, N'male');
+INSERT INTO DB_User ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) 
+VALUES ('FullnameNormal', 'normal', 'normal@email.com', 'passWORD', 1, 18, 'male');
 
-INSERT [dbo].[DB_User] ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) VALUES (N'storeowner', N'storeowner', N'storeowner@email.com', N'12345678', 1, 20, N'male');
+INSERT INTO DB_User ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) 
+VALUES ('FullnameStore', 'storeowner', 'storeOwner@email.com', 'password', 2, 18, 'male');
 
-
-
-//Login
-
-INSERT [dbo].[DB_User] ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) VALUES (N'Hussien Ashraf', N'Hussien', N'hussien@gmail.com', N'12345678', 0, 20, N'male');
-
-INSERT [dbo].[DB_User] ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) VALUES (N'Aho Hena', N'aho', N'aho@gmail.com', N'testSensetivity', 2, 18, N'male');
-
-//Add admin
-INSERT [dbo].[DB_User] ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) VALUES (N'addAdminTest_FullName', N'addAdminTest_master', N'master@yahoo.com', N'addAdminTest_12345678', 0, 29, N'male');
-
-
-
-//register
-
-INSERT [dbo].[DB_User] ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) VALUES (N'AnaaaHatem', N'Anaaaa', N'anaaa@yahoo.com', N'123456789', 2, 18, N'male');
-
-
-
-////////////////////////////////////////////////////////////////////// 
-// for running tests
-//////////////////////////////////////////////////////////////////////
-
-delete from DB_User where DB_Fullname = 'AnaaaHatem';
-delete from DB_User where DB_Fullname = 'addAdminTest_FullName';
-delete from DB_User where DB_Username = 'StoreOwner1';
-
-INSERT [dbo].[DB_User] ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) VALUES (N'addAdminTest_FullName', N'addAdminTest_master', N'master@yahoo.com', N'addAdminTest_12345678', 0, 29, N'male')
-
-INSERT [dbo].[DB_User] ([DB_Fullname], [DB_Username], [DB_Email], [DB_Password], [DB_Type], [DB_Age], [DB_Gender]) VALUES (N'AnaaaHatem', N'Anaaaa', N'anaaa@yahoo.com', N'123456789', 2, 18, N'male');
+select * from DB_User;
