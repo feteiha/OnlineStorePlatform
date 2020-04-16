@@ -26,6 +26,7 @@ namespace OnlineStorePlatform.Authentication_Middlware
             identity.AddClaim(new Claim(ClaimTypes.Name, user.username));
             identity.AddClaim(new Claim("Email", user.email));
             context.Validated(identity);
+
         }
     }
 }
