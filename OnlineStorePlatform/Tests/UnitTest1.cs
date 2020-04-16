@@ -214,13 +214,12 @@ namespace Tests
         {
             OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
-            // User in system try to add Admin in system
-            Adminstrator newAdmin = SetAdmin("user2" , "m2@yahoo.com");
+            // Admin in system try to add admin in system
+            Adminstrator newAdmin = SetAdmin("admin2", "admin2@email.com");
             IHttpActionResult result = userController.addAdmin(newAdmin);
-            newAdmin.deleteUser();
 
 			var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Error! No admin is detected!");
+            Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
         }
 
         [TestMethod]
@@ -229,9 +228,9 @@ namespace Tests
             OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
             // Admin in system try to add admin in system
-            Adminstrator newAdmin = SetAdmin("admin2", "admin2@email.com");
+            // both new admin have the same email
+            Adminstrator newAdmin = SetAdmin("user5", "admin@email.com");
             IHttpActionResult result = userController.addAdmin(newAdmin);
-            newAdmin.deleteUser();
 
 			var contentResult = result as OkNegotiatedContentResult<string>;
             Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
@@ -243,26 +242,10 @@ namespace Tests
             OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
 
             // Admin in system try to add admin in system
-            // both new admin have the same email
-            Adminstrator newAdmin = SetAdmin("user5", "admin@email.com");
-            IHttpActionResult result = userController.addAdmin(newAdmin);
-            newAdmin.deleteUser();
-
-			var contentResult = result as OkNegotiatedContentResult<string>;
-            Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
-        }
-
-        [TestMethod]
-        public void addAdmin_Test5()
-        {
-            OnlineStorePlatform.Controllers.UserController userController = new OnlineStorePlatform.Controllers.UserController();
-
-            // Admin in system try to add admin in system
             // both new admin have the user name email
 
             Adminstrator newAdmin = SetAdmin("admin", "user6@email.com");
             IHttpActionResult result = userController.addAdmin(newAdmin);
-            newAdmin.deleteUser();
 
             var contentResult = result as OkNegotiatedContentResult<string>;
             Assert.AreEqual(contentResult.Content.ToString(), "Error creating admin!");
@@ -318,7 +301,7 @@ namespace Tests
 			IHttpActionResult result5 = test5.login("normal", "passWORD");
 			var contentResult5 = result5 as OkNegotiatedContentResult<User>;
 
-			Assert.AreEqual(contentResult5.Content.username.ToString().ToLower(), "admin");
+			Assert.AreEqual(contentResult5.Content.username.ToString().ToLower(), "normal");
 
 		}
 		[TestMethod]
@@ -336,14 +319,14 @@ namespace Tests
 			IHttpActionResult result6 = test6.login("storeOwner@email.com", "password");
 			var contentResult6 = result6 as OkNegotiatedContentResult<User>;
 
-			Assert.AreEqual(contentResult6.Content.email.ToString().ToLower(), "storeOwner@email.com");
+			Assert.AreEqual(contentResult6.Content.email.ToString(), "storeOwner@email.com");
 		}
 		[TestMethod]
 		public void Testlogin8() //Wrong Email
 		{
 			OnlineStorePlatform.Controllers.UserController test8 = new OnlineStorePlatform.Controllers.UserController();
 			IHttpActionResult result8 = test8.login("storeownerr@email.com", "password");
-			var contentResult8 = result8 as OkNegotiatedContentResult<User>;
+			var contentResult8 = result8 as OkNegotiatedContentResult<string>;
 
 			Assert.AreEqual(contentResult8.Content.ToString(), "Login Failed!");
 		}
